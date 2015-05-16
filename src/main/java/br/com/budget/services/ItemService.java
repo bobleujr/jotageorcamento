@@ -11,7 +11,8 @@ import org.json.JSONObject;
 import br.com.budget.dao.ItemDAO;
 import br.com.budget.entities.Item;
 
-@SuppressWarnings("unused")
+import com.google.appengine.api.datastore.Key;
+
 @Path("/item")
 public class ItemService {
 
@@ -19,25 +20,24 @@ public class ItemService {
 	 @Path("/add") 
 	 @Consumes(MediaType.APPLICATION_JSON)
 	 @Produces(MediaType.APPLICATION_JSON)
-	 public String firstApiCall(String param1){
+	 public String addItem(String param1){
 		 
 		 JSONObject obj = new JSONObject(param1);
 		 
 		 Item item = new Item();
 		 item.setName(obj.getString("name"));
-		 item.setDescription("Descricao1");
-		 item.setDescription2("Descricao1");
-		 item.setDescription3("Descricao1");
-		 item.setValue(100);
-		 item.setValue2(100);
-		 item.setValue3(100);
+		 item.setDescription(obj.getString("description"));
+		 item.setDescription2(obj.getString("description1"));
+		 item.setDescription3(obj.getString("description2"));
+		 item.setValue(obj.getDouble("value"));
+		 item.setValue2(obj.getDouble("value1"));
+		 item.setValue3(obj.getDouble("value2"));
 		 
-		 JSONObject obj = new JSONObject(item);
 		 
 		 ItemDAO dao = new ItemDAO();
-		 dao.addItem(item);
-		
-		 return obj.toString();
+		 Key key = dao.addItem(item);
+		 
+		 return new JSONObject(key).toString();
 	 }
 	
 }
