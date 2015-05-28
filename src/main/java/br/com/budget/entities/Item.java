@@ -5,9 +5,9 @@ public class Item {
 	private String description;
 	private String description2;
 	private String description3;
-	private double value;
-	private double value2;
-	private double value3;
+	private double price;
+	private double price2;
+	private double price3;
 	public String getName() {
 		return name;
 	}
@@ -32,23 +32,23 @@ public class Item {
 	public void setDescription3(String description3) {
 		this.description3 = description3;
 	}
-	public double getValue() {
-		return value;
+	public double getPrice() {
+		return price;
 	}
-	public void setValue(double value) {
-		this.value = value;
+	public void setPrice(double price) {
+		this.price = price;
 	}
-	public double getValue2() {
-		return value2;
+	public double getPrice2() {
+		return price2;
 	}
-	public void setValue2(double value2) {
-		this.value2 = value2;
+	public void setPrice2(double price2) {
+		this.price2 = price2;
 	}
-	public double getValue3() {
-		return value3;
+	public double getPrice3() {
+		return price3;
 	}
-	public void setValue3(double value3) {
-		this.value3 = value3;
+	public void setPrice3(double price3) {
+		this.price3 = price3;
 	}
 	
 	
