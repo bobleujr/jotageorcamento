@@ -24,22 +24,18 @@ public class ItemDAO {
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
 
-		Entity object = new Entity("Item");
+		Entity object = new Entity("item");
 
 		object.setProperty("name", item.getName());
 		object.setProperty("description", item.getDescription());
-		object.setProperty("description2", item.getDescription2());
-		object.setProperty("description3", item.getDescription3());
+		object.setProperty("description1", item.getDescription2());
+		object.setProperty("description2", item.getDescription3());
 		object.setProperty("price", item.getPrice());
-		object.setProperty("price2", item.getPrice2());
-		object.setProperty("price3", item.getPrice3());
+		object.setProperty("price1", item.getPrice2());
+		object.setProperty("price2", item.getPrice3());
 		object.setProperty("lastUpdate", today.toDate());
 		
-		datastore.beginTransaction();
-		
 		Key key = datastore.put(object);
-		
-		datastore.getCurrentTransaction().commit();
 		
 		return key;
 	}
@@ -47,14 +43,10 @@ public class ItemDAO {
 	public List<Entity> listItem(){
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 			 
-		Query q = new Query("Item");
-		
-		datastore.beginTransaction();
+		Query q = new Query("item");
 		
 		PreparedQuery pd = datastore.prepare(q);
 	 	List<Entity> items = pd.asList(FetchOptions.Builder.withDefaults());
-		
-	 	datastore.getCurrentTransaction().commit();
 			
 	 	return items;
 	}

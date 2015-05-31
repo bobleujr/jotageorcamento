@@ -3,10 +3,12 @@ package br.com.budget.services;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.json.JSONObject;
 
@@ -15,6 +17,7 @@ import br.com.budget.entities.Item;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
+import com.google.gson.Gson;
 
 @Path("/item")
 public class ItemService {
@@ -39,18 +42,22 @@ public class ItemService {
 		 ItemDAO dao = new ItemDAO();
 		 Key key = dao.addItem(item);
 		 
-		 return new JSONObject(key).toString();
+		 String keyr = new Gson().toJson(key);
+		 return keyr;
 	 }
 	 
-	 @POST
+	 @GET
 	 @Path("/list") 
 	 @Produces(MediaType.APPLICATION_JSON)
-	 public String listItem(){
+	 public Response listItem(){
 		 
 		 ItemDAO dao = new ItemDAO();
 		 List<Entity> items = dao.listItem();
-		 
-		 return new JSONObject(items).toString();
+		 String obj = new Gson().toJson(items);
+		 return Response.ok(obj)
+				 .header("Access-Control-Allow-Origin","*")
+		         .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+		         .build();
 	 }
 	
 }
