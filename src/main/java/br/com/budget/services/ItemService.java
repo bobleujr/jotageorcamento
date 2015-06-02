@@ -25,7 +25,7 @@ public class ItemService {
 	 @Path("/add") 
 	 @Consumes(MediaType.APPLICATION_JSON)
 	 @Produces(MediaType.APPLICATION_JSON)
-	 public String addItem(String param1){
+	 public Response addItem(String param1){
 		 
 		 JSONObject obj = new JSONObject(param1);
 		 
@@ -43,7 +43,10 @@ public class ItemService {
 		 Key key = dao.addItem(item);
 		 
 		 String keyr = new Gson().toJson(key);
-		 return keyr;
+		 
+		 return Response.ok(keyr)
+		         .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+		         .build();
 	 }
 	 
 	 @GET
@@ -53,9 +56,9 @@ public class ItemService {
 		 
 		 ItemDAO dao = new ItemDAO();
 		 List<Entity> items = dao.listItem();
+		 
 		 String obj = new Gson().toJson(items);
 		 return Response.ok(obj)
-				 .header("Access-Control-Allow-Origin","*")
 		         .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
 		         .build();
 	 }
