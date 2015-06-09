@@ -19,18 +19,19 @@ angular
     'ui.bootstrap',
     'ngTable',
     'ngMaterial',
-    'facebook'
+    'facebook',
+    'ngMessages'
 
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/quote.html',
-        controller: 'QuoteCtrl'
+        controller: 'QuoteCtrl as my'
       })
       .when('/item', {
         templateUrl: 'views/item.html',
-        controller: 'ItemCtrl'
+        controller: 'ItemCtrl as my'
       })
       .otherwise({
         redirectTo: '/'
@@ -54,4 +55,9 @@ angular
      
     }
   ])
+  .config(function($mdThemingProvider) {
+	  $mdThemingProvider.theme('default')
+	  .primaryPalette('grey')
+	  .accentPalette('blue-grey');
+  })
 

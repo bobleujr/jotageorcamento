@@ -1,0 +1,94 @@
+<md-dialog aria-label="Adicionar Item" style="width:60%">
+  <form name="form">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Adicionar Item</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="cancel()">
+        <i class="glyphicon glyphicon-remove"></i>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+	  <div>
+	    <div layout layout-sm="column">
+	      	<!-- will be an autocomplete -->
+	      	<md-input-container>
+	            <label>Categoria</label>
+	            <input required ng-model="item.category" name="category">
+	            <div ng-messages="form.category.$error">
+		          <div ng-message="required">Preencher</div>
+		        </div>
+	         </md-input-container>
+	        <md-input-container flex >
+	            <label>Código</label>
+	            <input required ng-model="item.code" name="code">
+	            <div ng-messages="form.code.$error">
+		          <div ng-message="required">Preencher</div>
+		        </div>
+	         </md-input-container>
+	    </div>
+	    <div layout layout-sm="column" style="min-height:48px">
+	      	<!-- will be an autocomplete -->
+	      	<md-input-container flex >
+	            <label>Preço 1</label>
+	            <input required ng-model="item.price" name="price">
+	            <div ng-messages="form.price.$error">
+		          <div ng-message="required">Preencher</div>
+		        </div>
+	         </md-input-container>
+	        <md-input-container flex >
+	            <label>Preço 2</label>
+	            <input required ng-model="item.price1" name="price1">
+	            <div ng-messages="form.price1.$error">
+		          <div ng-message="required">Preencher</div>
+		        </div>
+	         </md-input-container>
+	         <md-input-container flex >
+	            <label>Preço 3</label>
+	            <input required ng-model="item.price2" name="price2">
+	            <div ng-messages="form.price2.$error">
+		          <div ng-message="required">Preencher</div>
+		        </div>
+	         </md-input-container>
+	    </div>
+	    <div>
+	    	<md-input-container flex >
+	            <label>Descrição 1</label>
+	            <input required ng-model="item.description" name="description">
+	            <div ng-messages="form.description.$error">
+		          <div ng-message="required">Preencher</div>
+		        </div>
+	         </md-input-container>
+	    </div>
+	    <div>
+	    	<md-input-container flex >
+	            <label>Descrição 2</label>
+	            <input required ng-model="item.description1" name="description1">
+	            <div ng-messages="form.description2.$error">
+		          <div ng-message="required">Preencher</div>
+		        </div>
+	         </md-input-container>
+	    </div>
+	    <div>
+	    	<md-input-container flex >
+	            <label>Descrição 3</label>
+	            <input required ng-model="item.description2" name="description2">
+	            <div ng-messages="form.description2.$error">
+		          <div ng-message="required">Preencher</div>
+		        </div>
+	         </md-input-container>
+	    </div>
+	 </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button ng-click="cancel()" class="md-primary">
+     Cancelar
+    </md-button>
+    <md-button ng-click="addItem()" class="md-primary">
+      Confirmar
+    </md-button>
+  </div>
+  </form>
+</md-dialog>
