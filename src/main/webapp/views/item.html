@@ -6,11 +6,11 @@
 	</section>
 	<table ng-table="my.tableParams" class="table">
                 <tr ng-repeat="item in $data">
-                    <td data-title="'Código'">{{item.propertyMap.name}}</td>
-                    <td data-title="'Descrição'">{{item.propertyMap.description}}</td>
-                    <td data-title="'Preço #1'">{{item.propertyMap.price}}</td>
-                    <td data-title="'Preço #2'">{{item.propertyMap.price1}}</td>
-                    <td data-title="'Preço #3'">{{item.propertyMap.price2}}</td>
+                    <td data-title="'Código'">{{item.propertyMap.name || item.name}}</td>
+                    <td data-title="'Descrição'">{{item.propertyMap.description || item.description}}</td>
+                    <td data-title="'Preço #1'">{{item.propertyMap.price || item.price}}</td>
+                    <td data-title="'Preço #2'">{{item.propertyMap.price1 || item.price1}}</td>
+                    <td data-title="'Preço #3'">{{item.propertyMap.price2 || item.price2}}</td>
 
                 </tr>
     </table>

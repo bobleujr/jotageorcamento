@@ -38,10 +38,6 @@ angular.module('quoteProjectApp')
 
     my.loadItems();
 
-    $scope.$watch('$data', function() {
-        my.tableParams.reload();
-    });
-    
     my.showAddItem = function(ev){
     	$mdDialog.show({
     	      controller: AddItemCtrl,
@@ -54,6 +50,7 @@ angular.module('quoteProjectApp')
     	    	$http.post('/resources/item/add', answer).
     	        success(function(data, status, headers, config) {
     	        	$scope.data.push(answer);
+    	        	my.tableParams.reload();
     	        }).
     	        error(function(data, status, headers, config) {
     	            return undefined;
