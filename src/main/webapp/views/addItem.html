@@ -79,7 +79,11 @@
 		        </div>
 	         </md-input-container>
 	    </div>
-	 </div>
+	    <!-- UPLOAD -->
+	    <div ngf-drop ngf-select ng-model="files" class="drop-box" 
+        	ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+        	accept="image/*,application/pdf">Arraste fotos aqui</div>
+	 	</div>
   </md-dialog-content>
   <div class="md-actions" layout="row">
     <span flex></span>

@@ -20,7 +20,8 @@ angular
     'ngTable',
     'ngMaterial',
     'facebook',
-    'ngMessages'
+    'ngMessages',
+    'ngFileUpload'
 
   ])
   .config(function ($routeProvider) {

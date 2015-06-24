@@ -7,11 +7,12 @@
 	<table ng-table="my.tableParams" class="table">
                 <tr ng-repeat="item in $data">
                     <td data-title="'Código'">{{item.propertyMap.name || item.name}}</td>
-                    <td data-title="'Descrição'">{{item.propertyMap.description || item.description}}</td>
+                    <td data-title="'Descrição #1'">{{item.propertyMap.description || item.description}}</td>
+                    <td data-title="'Descrição #2'">{{item.propertyMap.description1 || item.description1}}</td>
+                    <td data-title="'Descrição #3'">{{item.propertyMap.description2 || item.description2}}</td>
                     <td data-title="'Preço #1'">{{item.propertyMap.price || item.price}}</td>
                     <td data-title="'Preço #2'">{{item.propertyMap.price1 || item.price1}}</td>
                     <td data-title="'Preço #3'">{{item.propertyMap.price2 || item.price2}}</td>
-
                 </tr>
     </table>
 </div>
