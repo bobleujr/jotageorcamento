@@ -62,19 +62,19 @@ angular.module('quoteProjectApp')
     }
 
   })
-  .service('fileUpload', ['$http', function ($http) {
-    this.uploadFileToUrl = function(file, uploadUrl){
+  .service('fileUpload', ['$http', '$q', function ($http, $q) {
+    
+	this.uploadFileToUrl = function(file, uploadUrl){
         var fd = new FormData();
         fd.append('file', file);
-        $http.post(uploadUrl, fd, {
+        var promise = $http.post(uploadUrl, fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
+        }).then(function(response){
+        	return response.data.id;
         })
-        .success(function(data){
-        	console.log(data);
-        })
-        .error(function(){
-        });
+
+        return promise;
     }
   }]);
 
@@ -86,12 +86,15 @@ angular.module('quoteProjectApp')
 	    $mdDialog.cancel();
 	  };
 	  $scope.addItem = function() {
-	    $mdDialog.hide($scope.item);
+		  $mdDialog.hide($scope.item);
 	  };
 	  
 	  $scope.$watch('files', function () {
 	        if($scope.files != undefined){
-	        	fileUpload.uploadFileToUrl($scope.files[0], '/upload');
+	        	fileUpload.uploadFileToUrl($scope.files[0], '/upload').then(function(id){ 
+	        		$scope.item.idFile = id;
+	        	});
+	        	
 	        }
 	    });
 	    

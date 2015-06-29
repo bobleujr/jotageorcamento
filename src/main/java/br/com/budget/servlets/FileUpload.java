@@ -1,5 +1,6 @@
 package br.com.budget.servlets;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Logger;
@@ -12,8 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 
 import br.com.budget.dao.FileDAO;
 import br.com.budget.entities.MyFile;
@@ -55,16 +54,16 @@ public class FileUpload extends HttpServlet {
 	          // datastore).
 	          int len;
 	          byte[] buffer = new byte[512];
+	          
+	          ByteArrayOutputStream baout = new ByteArrayOutputStream();
 	          while ((len = stream.read(buffer, 0, buffer.length)) != -1) {
-	            res.getOutputStream().write(buffer, 0, len);
+	            baout.write(buffer, 0, len);
 	          }
 
 	          MyFile file = new MyFile();
-	          DateTime now = new DateTime();
-	  		  LocalDate today = now.toLocalDate();
 	          
 	          file.setFile(buffer);
-	          file.setName(today.toString()+".jpg");
+	          file.setName(item.getName());
 				
 	          FileDAO dao = new FileDAO();
 	          Key key = dao.addItem(file);	
@@ -79,11 +78,5 @@ public class FileUpload extends HttpServlet {
 	    }
 	  }
 	  
-	  @Override
-	  public void doGet(HttpServletRequest req, HttpServletResponse res)
-	      throws ServletException, IOException {
-
-		  System.out.println("teste");
-	  }
 		  
 	}

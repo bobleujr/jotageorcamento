@@ -80,3 +80,8 @@ body {
 .dragover {
     border: 5px dashed blue;
 }
+
+.photo {
+	height: 100px;
+	width: 100px;
+}

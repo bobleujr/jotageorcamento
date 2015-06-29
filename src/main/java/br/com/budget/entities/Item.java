@@ -8,6 +8,8 @@ public class Item {
 	private double price;
 	private double price2;
 	private double price3;
+	private long idFile;
+	
 	public String getName() {
 		return name;
 	}
@@ -50,6 +52,13 @@ public class Item {
 	public void setPrice3(double price3) {
 		this.price3 = price3;
 	}
+	public long getIdFile() {
+		return idFile;
+	}
+	public void setIdFile(long idFile) {
+		this.idFile = idFile;
+	}
+
 	
 	
 	

@@ -37,6 +37,7 @@ public class ItemService {
 		 item.setPrice(obj.getDouble("price"));
 		 item.setPrice2(obj.getDouble("price1"));
 		 item.setPrice3(obj.getDouble("price2"));
+		 item.setIdFile(obj.getLong("idFile"));
 		 
 		 
 		 ItemDAO dao = new ItemDAO();

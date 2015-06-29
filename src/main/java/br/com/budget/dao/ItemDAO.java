@@ -34,6 +34,7 @@ public class ItemDAO {
 		object.setProperty("price1", item.getPrice2());
 		object.setProperty("price2", item.getPrice3());
 		object.setProperty("lastUpdate", today.toDate());
+		object.setProperty("idFile", item.getIdFile());
 		
 		Key key = datastore.put(object);
 		
