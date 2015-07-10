@@ -1,3 +1,78 @@
-<div>
-<p>This is the about view.</p>
+<div layout="row" layout-align="space-around center">
+	<div>
+        <md-checkbox ng-model="empresa.jotage" aria-label="jotage">
+          Jotagê
+        </md-checkbox>
+    </div>
+    <div>
+        <md-checkbox ng-model="empresa.bandaativa" aria-label="banda ativa">
+          Banda Ativa
+        </md-checkbox>
+    </div>
+    <div>
+        <md-checkbox ng-model="empresa.elza" aria-label="elza">
+          Elza
+        </md-checkbox>
+    </div>
 </div>
+<md-content layout="column" ng-cloak>
+  <form name="quoteForm">	
+  	<div layout="row" layout-align="space-between center" height="95px" flex>
+	  <div flex>
+	      <md-autocomplete
+	          ng-disabled="my.isDisabled"
+	          md-no-cache="my.noCache"
+	          md-selected-item="my.selectedItem"
+	          md-search-text-change="my.searchTextChange(my.searchText)"
+	          md-search-text="my.searchText"
+	          md-selected-item-change="my.selectedItemChange(item)"
+	          md-items="item in my.querySearch(my.searchText)"
+	          md-item-text="item.propertyMap.name"
+	          md-min-length="0"
+	          md-menu-class="autocomplete-custom-template"
+	          >
+	        <md-item-template>
+	          <span class="item-title">
+	            <!-- <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon> -->
+	            <span> {{item.propertyMap.name}} </span>
+	          </span>
+	          <span class="item-metadata">
+	            
+	            <span class="item-metastat" flex>
+	              <strong>{{item.propertyMap.description}}</strong> 
+	            </span>
+	            <span class="item-metastat">
+	              {{item.propertyMap.price | currency:"R$"}}
+	            </span>
+	          </span>
+	        </md-item-template>
+	     </md-autocomplete>
+	   </div>
+	   
+	   <div>  
+	      <md-input-container>
+		      <label>Quantidade</label>
+		      <input required type="number" step="any" name="quantity" min="0" max="9999" ng-model="my.selectedItem.quantity">
+		        <div ng-messages="quoteForm.quantity.$error">
+		          <div ng-message="required">Obrigatório</div>
+		          <div ng-message="min">Quantidade mínima 0</div>
+		          <div ng-message="max">Quantidade máxima 9999</div>
+		        </div>
+		    </md-input-container>
+	   </div>
+	   
+	   <md-button class="md-icon-button" aria-label="Add" ng-click="my.addToQuote()">
+        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+       </md-button>
+	</div>
+  </form>
+</md-content>
+ <div>
+	<table ng-if="my.list" class="table-quote">
+		<tr ng-repeat="item in my.list">
+			<td>{{item.propertyMap.name}}</td>
+			<td>{{item.propertyMap.description}}</td>
+			<td>{{item.propertyMap.price | currency:"R$"}}</td>
+		</tr>
+	</table>
+ </div>

@@ -85,3 +85,37 @@ body {
 	height: 100px;
 	width: 100px;
 }
+
+table-quote {
+	padding: 5px 10px 5px 10px;
+	width: 100%;
+  	margin-top: 20px;
+  	margin-bottom: 20px;
+}
+
+table-quote tr:hover {
+	background-color: #f8f8f8;
+	color: #5e5e5e;
+}
+
+ .autocomplete-custom-template li {
+	  border-bottom: 1px solid #ccc;
+	  height: auto;
+	  padding-top: 8px;
+	  padding-bottom: 8px;
+	  white-space: normal; 
+  	}
+ .autocomplete-custom-template li:last-child {
+  	border-bottom-width: 0; 
+  	}
+ .autocomplete-custom-template .item-title,  .autocomplete-custom-template .item-metadata {
+	  display: block;
+	  line-height: 2; 
+	  }
+ .autocomplete-custom-template .item-title md-icon {
+	  height: 18px;
+	  width: 18px; 
+  }
+ md-autocomplete {
+ 	margin-right: 10px;
+ }
