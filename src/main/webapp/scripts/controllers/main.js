@@ -8,7 +8,7 @@
  * Controller of the quoteProjectApp
  */
 angular.module('quoteProjectApp')
-  .controller('MainCtrl', function ($scope, Facebook) {
+  .controller('MainCtrl', function ($scope, Facebook, UserSrvc) {
 	  $scope.user = {};
       
       // Defining user logged status
@@ -38,6 +38,8 @@ angular.module('quoteProjectApp')
         if (response.status == 'connected') {
           userIsConnected = true;
           $scope.logged = true;
+          UserSrvc.setId(response.authResponse.userID);
+          
         }
       });
       
@@ -59,6 +61,7 @@ angular.module('quoteProjectApp')
           if (response.status == 'connected') {
             $scope.logged = true;
             $scope.me();
+            UserSrvc.setId(response.authResponse.userID);
           }
         
         });
@@ -98,6 +101,7 @@ angular.module('quoteProjectApp')
         console.log('Status: ', data);
         if (data.status == 'connected') {
           $scope.$apply(function() {
+        	UserSrvc.setId(data.authResponse.userID);
             $scope.salutation = true;
             $scope.byebye     = false; 
             $scope.logged = true;

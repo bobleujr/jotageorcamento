@@ -8,7 +8,7 @@
  * Controller of the quoteProjectApp
  */
 angular.module('quoteProjectApp')
-  .controller('ItemCtrl', function ($scope, $http, ngTableParams, $mdDialog) {
+  .controller('ItemCtrl', function ($scope, $http, ngTableParams, $mdDialog, UserSrvc) {
     var my = this;
     $scope.data = [];
     
@@ -25,7 +25,7 @@ angular.module('quoteProjectApp')
 
     
     my.loadItems = function() {
-      $http.get('/resources/item/list').
+      $http.post('/resources/item/list',{id:UserSrvc.getId()}).
         success(function(data, status, headers, config) {
             $scope.data = data;
             my.tableParams.total($scope.data.length);
@@ -47,6 +47,7 @@ angular.module('quoteProjectApp')
     	    })
     	    .then(function(answer) {
     	    	answer.name = answer.category + answer.code;
+    	    	answer.idUser = UserSrvc.getId();
     	    	$http.post('/resources/item/add', answer).
     	        success(function(data, status, headers, config) {
     	        	$scope.data.push(answer);

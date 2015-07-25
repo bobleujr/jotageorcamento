@@ -38,6 +38,7 @@ public class ItemService {
 		 item.setPrice2(obj.getDouble("price1"));
 		 item.setPrice3(obj.getDouble("price2"));
 		 item.setIdFile(obj.getLong("idFile"));
+		 item.setIdUser(obj.getLong("idUser"));
 		 
 		 
 		 ItemDAO dao = new ItemDAO();
@@ -50,13 +51,16 @@ public class ItemService {
 		         .build();
 	 }
 	 
-	 @GET
+	 @POST
 	 @Path("/list") 
 	 @Produces(MediaType.APPLICATION_JSON)
-	 public Response listItem(){
+	 public Response listItem(String param1){
+		 JSONObject json = new JSONObject(param1);
+		 
+		 Long id = json.getLong("id");
 		 
 		 ItemDAO dao = new ItemDAO();
-		 List<Entity> items = dao.listItem();
+		 List<Entity> items = dao.listItem(id);
 		 
 		 String obj = new Gson().toJson(items);
 		 return Response.ok(obj)

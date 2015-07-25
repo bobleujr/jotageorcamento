@@ -86,16 +86,21 @@ body {
 	width: 100px;
 }
 
-table-quote {
+.table-quote {
 	padding: 5px 10px 5px 10px;
 	width: 100%;
   	margin-top: 20px;
   	margin-bottom: 20px;
+  	text-align: right;
 }
 
-table-quote tr:hover {
+.table-quote tr:hover {
 	background-color: #f8f8f8;
 	color: #5e5e5e;
+}
+
+.table-quote tr {
+	padding: 2px 5px 2px 5px;
 }
 
  .autocomplete-custom-template li {

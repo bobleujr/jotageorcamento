@@ -9,6 +9,7 @@ public class Item {
 	private double price2;
 	private double price3;
 	private long idFile;
+	private long idUser;
 	
 	public String getName() {
 		return name;
@@ -57,6 +58,12 @@ public class Item {
 	}
 	public void setIdFile(long idFile) {
 		this.idFile = idFile;
+	}
+	public long getIdUser() {
+		return idUser;
+	}
+	public void setIdUser(long idUser) {
+		this.idUser = idUser;
 	}
 
 	

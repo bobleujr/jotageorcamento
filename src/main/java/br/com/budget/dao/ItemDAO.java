@@ -14,6 +14,9 @@ import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
 public class ItemDAO {
 	
 	
@@ -35,16 +38,21 @@ public class ItemDAO {
 		object.setProperty("price2", item.getPrice3());
 		object.setProperty("lastUpdate", today.toDate());
 		object.setProperty("idFile", item.getIdFile());
+		object.setProperty("idUser", item.getIdUser());
 		
 		Key key = datastore.put(object);
 		
 		return key;
 	}
 	
-	public List<Entity> listItem(){
+	public List<Entity> listItem(Long id){
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 			 
-		Query q = new Query("item");
+		Filter idUserFilter =
+				  new FilterPredicate("idUser",
+				                      FilterOperator.EQUAL,
+				                      id);
+		Query q = new Query("item").setFilter(idUserFilter);
 		
 		PreparedQuery pd = datastore.prepare(q);
 	 	List<Entity> items = pd.asList(FetchOptions.Builder.withDefaults());

@@ -70,9 +70,15 @@
  <div>
 	<table ng-if="my.list" class="table-quote">
 		<tr ng-repeat="item in my.list">
-			<td>{{item.propertyMap.name}}</td>
-			<td>{{item.propertyMap.description}}</td>
-			<td>{{item.propertyMap.price | currency:"R$"}}</td>
+			<td flex='15'">{{item.propertyMap.name}}</td>
+			<td flex='45'>{{item.propertyMap.description}}</td>
+			<td flex='18'>{{item.propertyMap.price | currency:"R$"}}</td>
+			<td flex='18'>{{ (item.propertyMap.price | number) * (item.quantity | number) | currency:"R$"}}</td>
+			<td flex='4'>
+				<md-button class="md-icon-button" aria-label="Add" ng-click="my.removeFromList(item)">
+			        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+			    </md-button>
+		    </td>
 		</tr>
 	</table>
  </div>
