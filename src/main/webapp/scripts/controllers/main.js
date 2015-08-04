@@ -9,14 +9,16 @@
  */
 angular.module('quoteProjectApp')
   .controller('MainCtrl', function ($scope, Facebook, UserSrvc) {
-	  $scope.user = {};
+	  var my = this;
+	  my.user = {};
+	  my.botao = true;
       
       // Defining user logged status
-      $scope.logged = false;
+      my.logged = false;
       
       // And some fancy flags to display messages upon user status change
-      $scope.byebye = false;
-      $scope.salutation = false;
+      my.byebye = false;
+      my.salutation = false;
       
       /**
        * Watch for Facebook to be ready.
@@ -28,7 +30,7 @@ angular.module('quoteProjectApp')
         },
         function(newVal) {
           if (newVal)
-            $scope.facebookReady = true;
+            my.facebookReady = true;
         }
       );
       
@@ -37,7 +39,7 @@ angular.module('quoteProjectApp')
       Facebook.getLoginStatus(function(response) {
         if (response.status == 'connected') {
           userIsConnected = true;
-          $scope.logged = true;
+          my.logged = true;
           UserSrvc.setId(response.authResponse.userID);
           
         }
@@ -46,21 +48,21 @@ angular.module('quoteProjectApp')
       /**
        * IntentLogin
        */
-      $scope.IntentLogin = function() {
+      my.IntentLogin = function() {
         if(!userIsConnected) {
-        	$scope.logged = false;
-        	$scope.login();
+        	my.logged = false;
+        	my.login();
         }
       };
       
       /**
        * Login
        */
-       $scope.login = function() {
+       my.login = function() {
          Facebook.login(function(response) {
           if (response.status == 'connected') {
-            $scope.logged = true;
-            $scope.me();
+            my.logged = true;
+            my.me();
             UserSrvc.setId(response.authResponse.userID);
           }
         
@@ -70,13 +72,13 @@ angular.module('quoteProjectApp')
        /**
         * me 
         */
-        $scope.me = function() {
+        my.me = function() {
           Facebook.api('/me', function(response) {
             /**
-             * Using $scope.$apply since this happens outside angular framework.
+             * Using my.$apply since this happens outside angular framework.
              */
             $scope.$apply(function() {
-              $scope.user = response;
+              my.user = response;
             });
             
           });
@@ -85,11 +87,11 @@ angular.module('quoteProjectApp')
       /**
        * Logout
        */
-      $scope.logout = function() {
+      my.logout = function() {
         Facebook.logout(function() {
           $scope.$apply(function() {
-            $scope.user   = {};
-            $scope.logged = false;  
+            my.user   = {};
+            my.logged = false;  
           });
         });
       }
@@ -102,19 +104,19 @@ angular.module('quoteProjectApp')
         if (data.status == 'connected') {
           $scope.$apply(function() {
         	UserSrvc.setId(data.authResponse.userID);
-            $scope.salutation = true;
-            $scope.byebye     = false; 
-            $scope.logged = true;
+            my.salutation = true;
+            my.byebye     = false; 
+            my.logged = true;
           });
         } else {
           $scope.$apply(function() {
-            $scope.salutation = false;
-            $scope.byebye     = true;
-            $scope.logged = false;
+            my.salutation = false;
+            my.byebye     = true;
+            my.logged = false;
             
             // Dismiss byebye message after two seconds
             $timeout(function() {
-              $scope.byebye = false;
+              my.byebye = false;
             }, 2000)
           });
         }

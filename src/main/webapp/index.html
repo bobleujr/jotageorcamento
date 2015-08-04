@@ -23,18 +23,18 @@
   <body ng-app="quoteProjectApp">
 
     
-    <div ng-controller="MainCtrl">
-      <div ng-switch on="logged">    
+    <div ng-controller="MainCtrl as my">
+      <div ng-switch on="my.logged">    
         <!--login-->
         <div ng-switch-when="false" class="login" layout="row" layout-align="center center">
         
               
-              <button type="button" class="btn btn-primary btn-large" data-ng-show="!logged" data-ng-disabled="!facebookReady" data-ng-click="IntentLogin()">Login with Facebook</button>
-              <button type="button" class="btn btn-danger btn-large" data-ng-show="logged" data-ng-disabled="!facebookReady" data-ng-click="logout()">Logout</button>
+              <button type="button" class="btn btn-primary btn-large" data-ng-show="!my.logged" data-ng-disabled="!my.facebookReady" data-ng-click="my.IntentLogin()">Login with Facebook</button>
+              
               
         </div>
         
-      <!--when logged-->
+      <!--when my.logged-->
         <div ng-switch-when="true">
           <div class="header">
             <div class="navbar navbar-default" role="navigation">
@@ -53,10 +53,13 @@
                 <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
                   <ul class="nav navbar-nav">
-                    <li class="active"><a href="#/">Orçamentos</a></li>
-                    <li><a ng-href="#/item">Produtos</a></li>
+                    <li ng-class="{'active': my.botao}" ng-click="my.botao = true"><a href="#/">Orçamentos</a></li>
+                    <li ng-class="{'active': !my.botao}" ng-click="my.botao = false"><a ng-href="#/item">Produtos</a></li>
+                    <li data-ng-show="my.logged" data-ng-disabled="!my.facebookReady" data-ng-click="my.logout()"><a ng-href="#/">Sair</a></li>
                   </ul>
                 </div>
+
+
               </div>
             </div>
           </div>
