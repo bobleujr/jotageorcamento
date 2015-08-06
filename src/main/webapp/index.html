@@ -24,7 +24,7 @@
 
     
     <div ng-controller="MainCtrl as my">
-      <div ng-switch on="my.logged">    
+      <div ng-switch on="my.logged" ng-cloak>    
         <!--login-->
         <div ng-switch-when="false" class="login" layout="row" layout-align="center center">
         
