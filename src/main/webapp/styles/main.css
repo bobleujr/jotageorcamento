@@ -94,6 +94,22 @@ body {
   	text-align: right;
 }
 
+.table-quote tr:nth-child(0){
+ 	flex: 15;	
+}
+.table-quote tr:nth-child(1){
+ 	flex: 45;
+}
+.table-quote tr:nth-child(2){
+	flex: 18;
+}
+.table-quote tr:nth-child(3){
+ 	flex: 18;	
+}
+.table-quote tr:nth-child(4){
+ 	flex: 4;	
+}
+
 .table-quote tr:hover {
 	background-color: #f8f8f8;
 	color: #5e5e5e;
@@ -133,3 +149,5 @@ body {
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
 }
+
+

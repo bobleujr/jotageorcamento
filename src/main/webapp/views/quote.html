@@ -1,16 +1,16 @@
 <div layout="row" layout-align="space-around center">
-	<div>
-        <md-checkbox ng-model="empresa.jotage" aria-label="jotage">
+	<div new-page>
+        <md-checkbox ng-model="my.empresa.jotage" ng-click="my.generateReport('printable')" aria-label="jotage">
           Jotagê
         </md-checkbox>
     </div>
     <div>
-        <md-checkbox ng-model="empresa.bandaativa" aria-label="banda ativa">
+        <md-checkbox ng-model="my.empresa.bandaativa" ng-click="my.generateReport(2)" aria-label="banda ativa">
           Banda Ativa
         </md-checkbox>
     </div>
     <div>
-        <md-checkbox ng-model="empresa.elza" aria-label="elza">
+        <md-checkbox ng-model="my.empresa.elza" ng-click="my.generateReport(3)" aria-label="elza">
           Elza
         </md-checkbox>
     </div>
@@ -67,18 +67,29 @@
 	</div>
   </form>
 </md-content>
- <div>
-	<table ng-if="my.list" class="table-quote">
-		<tr ng-repeat="item in my.list">
-			<td flex='15'">{{item.propertyMap.name}}</td>
-			<td flex='45'>{{item.propertyMap.description}}</td>
-			<td flex='18'>{{item.propertyMap.price | currency:"R$"}}</td>
-			<td flex='18'>{{ (item.propertyMap.price | number) * (item.quantity | number) | currency:"R$"}}</td>
-			<td flex='4'>
-				<md-button class="md-icon-button" aria-label="Add" ng-click="my.removeFromList(item)">
-			        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-			    </md-button>
-		    </td>
-		</tr>
-	</table>
+ 
+ <div id="printable" class="page">
+ 	<div>
+		<table ng-if="my.list" class="table-quote">
+			<tr ng-repeat="item in my.list">
+				<td id="name">{{item.propertyMap.name}}</td>
+				<td >{{item.propertyMap.description}}</td>
+				<td >{{item.propertyMap.price | currency:"R$"}}</td>
+				<td >{{ (item.propertyMap.price | number) * (item.quantity | number) | currency:"R$"}}</td>
+				<td >
+					<md-button class="md-icon-button" aria-label="Add" ng-click="my.removeFromList(item)">
+				        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				    </md-button>
+			    </td>
+			</tr>
+		</table>
+	</div>
  </div>
+<!--  <div layout="row">
+ 	<div flex></div>
+ 	<div>
+ 		<md-button class="md-icon-button" aria-label="Print" ng-click="print()">
+			<span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+		</md-button>
+ 	</div>
+ </div> -->

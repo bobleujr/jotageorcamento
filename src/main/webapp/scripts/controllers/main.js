@@ -8,7 +8,7 @@
  * Controller of the quoteProjectApp
  */
 angular.module('quoteProjectApp')
-  .controller('MainCtrl', function ($scope, Facebook, UserSrvc) {
+  .controller('MainCtrl', ['$scope', 'Facebook', 'UserSrvc', function ($scope, Facebook, UserSrvc) {
 	  var my = this;
 	  my.user = {};
 	  my.botao = true;
@@ -123,5 +123,5 @@ angular.module('quoteProjectApp')
         
         
       });
-  })
+  }])
 

@@ -8,7 +8,7 @@
   */
  angular.module('quoteProjectApp')
 
- .controller('QuoteCtrl', ['$scope', '$http', '$timeout', '$q', '$log', 'UserSrvc', function ($scope, $http, $timeout, $q, $log, UserSrvc) {
+ .controller('QuoteCtrl', ['$scope', '$http', '$timeout', '$q', '$log', 'UserSrvc', '$window', function ($scope, $http, $timeout, $q, $log, UserSrvc, $window) {
 	  var my = this;
 	  my.data = [];
 	  my.empresa = [];
@@ -92,5 +92,50 @@
 	      return function filterFn(item) {
 	        return (item.value.indexOf(lowercaseQuery) === 0);
 	      };
+	    }
+	    
+	    my.generateReport = function(divName){
+	    	if(my.empresa.jotage == true){
+	    		
+	    	}
+	    	var printContents = document.getElementById(divName).innerHTML;
+	        var originalContents = document.body.innerHTML;      
+
+	        if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+	            var popupWin = window.open('', '_blank', 'width=1024,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+	            popupWin.window.focus();
+	            popupWin.document.write('<!DOCTYPE html><html><head>' +
+	                '<link rel="stylesheet" href="styles/main.css"><link rel="stylesheet" type="text/css" media="print" href="styles/print.css">' +
+	                '</head><body onload="window.print()"><div class="reward-body">' + printContents + '</div></html>');
+	            popupWin.onbeforeunload = function (event) {
+	                popupWin.close();
+	                return '.\n';
+	            };
+	            popupWin.onabort = function (event) {
+	                popupWin.document.close();
+	                popupWin.close();
+	            }
+	        } else {
+	            var popupWin = window.open('', '_blank', 'width=800,height=600');
+	            popupWin.window.focus();
+	            popupWin.document.open();
+	            popupWin.document.write('<html><head><link rel="stylesheet" href="styles/main.css"><link rel="stylesheet" type="text/css" media="print" href="styles/print.css"></head><body onload="window.print()">' + printContents + '</html>');
+	            popupWin.document.close();
+	        }
+	        popupWin.document.close();
+
+	        return true;
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+//	    	var printContents = document.getElementById(divName).innerHTML;
+//	    	var popupWin = window.open('', '_blank', 'width=800,height=600');
+//	    	popupWin.document.open()
+//	    	popupWin.document.write('<html><head><link rel="stylesheet" href="styles/main.css"><link rel="stylesheet" type="text/css" media="print" href="styles/print.css"></head><body onload="window.print()">' + printContents + '</html>');
+//	    	popupWin.document.close();
 	    }
   }]);

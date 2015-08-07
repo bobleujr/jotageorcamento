@@ -8,7 +8,7 @@
  * Controller of the quoteProjectApp
  */
 angular.module('quoteProjectApp')
-  .controller('ItemCtrl', function ($scope, $http, ngTableParams, $mdDialog, UserSrvc) {
+  .controller('ItemCtrl', [ '$scope', '$http', 'ngTableParams', '$mdDialog', 'UserSrvc',  function ($scope, $http, ngTableParams, $mdDialog, UserSrvc) {
     var my = this;
     $scope.data = [];
     
@@ -62,7 +62,7 @@ angular.module('quoteProjectApp')
     	    });	    
     }
 
-  })
+  }])
   .service('fileUpload', ['$http', '$q', function ($http, $q) {
     
 	this.uploadFileToUrl = function(file, uploadUrl){
